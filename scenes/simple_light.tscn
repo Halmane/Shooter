@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckasix34fh1kx"]
+
+[ext_resource type="Texture2D" uid="uid://f04051uvm0a6" path="res://resources/graphics/objects/light.png" id="1_04ir5"]
+[ext_resource type="Texture2D" uid="uid://bnf17m27itqj2" path="res://resources/graphics/lights/textures/circle.png" id="2_2ie0l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6va6b"]
+radius = 19.0
+height = 198.0
+
+[node name="SimpleLight" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6va6b")
+
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("1_04ir5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 0.87451, 0.882353, 0.627451)
+energy = 3.07
+texture = ExtResource("2_2ie0l")
+texture_scale = 2.0

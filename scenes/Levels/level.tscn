@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cg32mnclgwx0i"]
+[gd_scene load_steps=13 format=3 uid="uid://cg32mnclgwx0i"]
 
 [ext_resource type="Script" path="res://scenes/Levels/level.gd" id="1_ff8qp"]
 [ext_resource type="PackedScene" uid="uid://m37xayojjyqc" path="res://scenes/Player/player.tscn" id="2_f7xdh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cg0sqg122trsg" path="res://resources/graphics/ground/stones.png" id="4_43us2"]
 [ext_resource type="Texture2D" uid="uid://dhtrtuieutuig" path="res://resources/graphics/tilesets/soil.png" id="5_suv0a"]
 [ext_resource type="PackedScene" uid="uid://mty8f1dkho4t" path="res://scenes/house.tscn" id="8_4ksxl"]
+[ext_resource type="PackedScene" uid="uid://qbd2ofpfrmge" path="res://scenes/steam_vent.tscn" id="9_0fypc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6oq7t"]
 texture = ExtResource("4_6ggyi")
@@ -55,6 +56,9 @@ region_rect = Rect2(-1000, -1000, 6000, 6000)
 modulate = Color(0.823529, 0, 0, 0.47451)
 position = Vector2(-640, 1723)
 texture = ExtResource("3_iolmh")
+
+[node name="SteamVent" parent="." instance=ExtResource("9_0fypc")]
+position = Vector2(81, 484)
 
 [node name="House" parent="." instance=ExtResource("8_4ksxl")]
 position = Vector2(-882, 3106)
