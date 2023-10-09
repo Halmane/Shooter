@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cg32mnclgwx0i"]
+[gd_scene load_steps=14 format=3 uid="uid://cg32mnclgwx0i"]
 
 [ext_resource type="Script" path="res://scenes/Levels/level.gd" id="1_ff8qp"]
 [ext_resource type="PackedScene" uid="uid://m37xayojjyqc" path="res://scenes/Player/player.tscn" id="2_f7xdh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dhtrtuieutuig" path="res://resources/graphics/tilesets/soil.png" id="5_suv0a"]
 [ext_resource type="PackedScene" uid="uid://mty8f1dkho4t" path="res://scenes/house.tscn" id="8_4ksxl"]
 [ext_resource type="PackedScene" uid="uid://qbd2ofpfrmge" path="res://scenes/steam_vent.tscn" id="9_0fypc"]
+[ext_resource type="PackedScene" uid="uid://ciydimbm5ebjh" path="res://scenes/fan_animation_light.tscn" id="10_d6nda"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6oq7t"]
 texture = ExtResource("4_6ggyi")
@@ -78,7 +79,7 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(65530, 65536, 0, 65531, 65536, 0, 65532, 65536, 0, 65533, 131072, 2)
 
 [node name="Player" parent="." instance=ExtResource("2_f7xdh")]
-position = Vector2(554, 562)
+position = Vector2(-504, 2221)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
@@ -87,6 +88,11 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="Projectiles" type="Node2D" parent="."]
 
+[node name="Fan_animation_light" parent="." instance=ExtResource("10_d6nda")]
+position = Vector2(-752, 1978)
+
+[connection signal="player_entered" from="House" to="." method="_on_house_player_entered"]
+[connection signal="player_exited" from="House" to="." method="_on_house_player_exited"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]

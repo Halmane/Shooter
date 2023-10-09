@@ -1,13 +1,133 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpph8p0rmw34v"]
+[gd_scene load_steps=11 format=3 uid="uid://dpph8p0rmw34v"]
 
 [ext_resource type="Script" path="res://scenes/grenade.gd" id="1_6sspi"]
 [ext_resource type="Texture2D" uid="uid://d0onijkc8dlnq" path="res://resources/graphics/projectiles/grenade.png" id="1_46o6r"]
+[ext_resource type="Texture2D" uid="uid://djx3bkuan30hl" path="res://resources/graphics/explosions/explosion_3.png" id="3_1ua4h"]
+[ext_resource type="Texture2D" uid="uid://bnf17m27itqj2" path="res://resources/graphics/lights/textures/circle.png" id="4_yv7jn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2r076"]
 bounce = 0.4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xcyj"]
 radius = 22.0227
+
+[sub_resource type="Animation" id="Animation_hq8c5"]
+resource_name = "new_animation"
+length = 2.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Grenade:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6qidx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_4ytax"]
+resource_name = "Blinking"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.1, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 10.0, 0.0, 10.0, 0.0, 10.0, 0.0, 10.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explode"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1kib5"]
+_data = {
+"Blinking": SubResource("Animation_4ytax"),
+"RESET": SubResource("Animation_6qidx"),
+"new_animation": SubResource("Animation_hq8c5")
+}
 
 [node name="Grenade" type="RigidBody2D"]
 collision_layer = 8
@@ -17,10 +137,30 @@ gravity_scale = 0.0
 linear_damp = 1.6
 script = ExtResource("1_6sspi")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2xcyj")
+
 [node name="Grenade" type="Sprite2D" parent="."]
 position = Vector2(0, 2.38419e-07)
 scale = Vector2(0.278481, 0.289474)
 texture = ExtResource("1_46o6r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2xcyj")
+[node name="Explosion3" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+texture = ExtResource("3_1ua4h")
+hframes = 8
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Explosion3")
+autoplay = "Blinking"
+audio_max_polyphony = 1
+libraries = {
+"": SubResource("AnimationLibrary_1kib5")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.917969, 0.132813, 0.132813, 1)
+energy = 2.0
+texture = ExtResource("4_yv7jn")
+texture_scale = 0.03

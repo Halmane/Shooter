@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://m37xayojjyqc"]
+[gd_scene load_steps=9 format=3 uid="uid://m37xayojjyqc"]
 
 [ext_resource type="Texture2D" uid="uid://dhvbu6m6vf3fq" path="res://resources/graphics/player/player.png" id="1_cd0td"]
 [ext_resource type="Script" path="res://scenes/Player/player.gd" id="1_ret7c"]
@@ -23,6 +23,9 @@ color_ramp = SubResource("GradientTexture1D_u4b7g")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ked24"]
 radius = 61.0328
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_65g4a"]
+polygon = PackedVector2Array(-54, -35, -45, -41, -36, -44, -31, -43, -29, -44, -29, -48, -20, -53, -15, -54, -13, -52, -7, -54, -1, -56, 6, -56, 10, -55, 18, -57, 23, -57, 29, -54, 33, -46, 37, -43, 43, -38, 42, -34, 46, -27, 53, -25, 59, -23, 70, -12, 74, -7, 79, -6, 85, -8, 92, -2, 97, 0, 106, 0, 110, 4, 121, 5, 123, 7, 121, 10, 122, 12, 125, 10, 129, 11, 132, 17, 132, 28, 130, 33, 127, 35, 124, 35, 121, 33, 119, 35, 120, 38, 120, 40, 115, 40, 110, 39, 107, 37, 104, 41, 101, 44, 97, 46, 95, 47, 95, 52, 93, 56, 86, 56, 72, 56, 63, 56, 58, 53, 58, 48, 60, 46, 55, 44, 44, 43, 42, 43, 38, 46, 29, 49, 21, 51, 9, 57, -2, 62, -14, 63, -28, 62, -37, 56, -39, 50, -43, 43, -45, 37, -49, 34, -54, 27, -54, 23, -52, 21, -52, 17, -56, 16, -61, 9, -61, -2, -61, -9, -60, -20, -56, -25)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 31
@@ -71,6 +74,9 @@ position = Vector2(34, -129)
 position = Vector2(132.5, 21.5)
 rotation = 1.5708
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_65g4a")
+
 [connection signal="timeout" from="LaserTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]
 [connection signal="timeout" from="GrenadeTimer" to="." method="_on_granade_timer_timeout"]
+[connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]
