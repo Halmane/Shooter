@@ -78,5 +78,5 @@ rotation = 1.5708
 occluder = SubResource("OccluderPolygon2D_65g4a")
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="GrenadeTimer" to="." method="_on_granade_timer_timeout"]
 [connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]
+[connection signal="timeout" from="GrenadeTimer" to="." method="_on_granade_timer_timeout"]

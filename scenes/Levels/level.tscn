@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cg32mnclgwx0i"]
+[gd_scene load_steps=15 format=3 uid="uid://cg32mnclgwx0i"]
 
 [ext_resource type="Script" path="res://scenes/Levels/level.gd" id="1_ff8qp"]
 [ext_resource type="PackedScene" uid="uid://m37xayojjyqc" path="res://scenes/Player/player.tscn" id="2_f7xdh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mty8f1dkho4t" path="res://scenes/house.tscn" id="8_4ksxl"]
 [ext_resource type="PackedScene" uid="uid://qbd2ofpfrmge" path="res://scenes/steam_vent.tscn" id="9_0fypc"]
 [ext_resource type="PackedScene" uid="uid://ciydimbm5ebjh" path="res://scenes/fan_animation_light.tscn" id="10_d6nda"]
+[ext_resource type="PackedScene" uid="uid://dk072i3lby54h" path="res://scenes/Player/drone.tscn" id="11_ntnhb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6oq7t"]
 texture = ExtResource("4_6ggyi")
@@ -90,6 +91,9 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="Fan_animation_light" parent="." instance=ExtResource("10_d6nda")]
 position = Vector2(-752, 1978)
+
+[node name="Drone" parent="." instance=ExtResource("11_ntnhb")]
+position = Vector2(366, 1056)
 
 [connection signal="player_entered" from="House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="House" to="." method="_on_house_player_exited"]
