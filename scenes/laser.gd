@@ -5,7 +5,6 @@ var direction: Vector2 = Vector2.UP
 
 func _ready():
 	$SelfDestructTimer.start()
-	print("Start")
 
 func _process(delta):
 	position += direction * speed * delta 
@@ -18,4 +17,3 @@ func _on_body_entered(body):
 
 func _on_self_destruct_timer_timeout():
 	queue_free()
-	print("end")
